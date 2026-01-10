@@ -201,7 +201,14 @@ p {
 .hero h1 {
     margin-bottom: var(--space-sm);
 }
-
+.hero-byline {
+    font-family: var(--font-body);
+    font-size: 1.1rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--color-grey-warm);
+    margin-bottom: var(--space-sm);
+}
 .hero-subtitle {
     font-family: var(--font-heading);
     font-style: italic;
