@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lucy's Dressings | My Plates or Yours</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Jost:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        /* =====================================================
+           LUCY'S COLLABORATION PAGE - SCROLL STORYTELLING
+           ===================================================== */
+
+        /* --- Hero --- */
+        .collab-hero {
+            height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: flex-end;
+            justify-content: flex-start;
+            overflow: hidden;
+        }
+
+        .collab-hero-bg {
+            position: absolute;
+            inset: 0;
+            background-image: url('images/collaborations/lucys/Lucys_miso_soy_salmon.jpg');
+            background-size: cover;
+            background-position: center;
+            filter: brightness(0.55);
+            transform: scale(1.05);
+            transition: transform 8s ease-out;
+        }
+
+        .collab-hero.in-view .collab-hero-bg {
+            transform: scale(1);
+        }
+
+        .collab-hero-content {
+            position: relative;
+            z-index: 2;
+            padding: 4rem;
+            max-width: 700px;
+            color: var(--color-beige);
+        }
+
+        .collab-hero-tag {
+            font-family: var(--font-body);
+            font-size: 0.85rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #C6A88E;
+            margin-bottom: 1rem;
+        }
+
+        .collab-hero h1 {
+            font-family: var(--font-heading);
+            font-size: clamp(3rem, 7vw, 5.5rem);
+            font-weight: 600;
+            line-height: 1.05;
+            margin-bottom: 1.5rem;
+        }
+
+        .collab-hero h1 em {
+            font-style: italic;
+            font-weight: 400;
+        }
+
+        .collab-hero-tagline {
+            font-family: var(--font-heading);
+            font-style: italic;
+            font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+            opacity: 0.85;
+        }
+
+        .scroll-hint {
+            position: absolute;
+            bottom: 2.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--color-beige);
+            opacity: 0.7;
+        }
+
+        .scroll-hint span {
+            font-family: var(--font-body);
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .scroll-hint-line {
+            width: 1px;
+            height: 40px;
+            background: var(--color-beige);
+            animation: scrollPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes scrollPulse {
+            0%, 100% { opacity: 0.3; transform: scaleY(0.6); }
+            50% { opacity: 1; transform: scaleY(1); }
+        }
+
+        /* --- Story Sections (alternating text + image) --- */
+        .story-block {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 100vh;
+        }
+
+        .story-block.reverse {
+            direction: rtl;
+        }
+
+        .story-block.reverse > * {
+            direction: ltr;
+        }
+
+        .story-text-panel {
+            display: flex;
+            align-items: center;
+            padding: 5rem 4rem;
+            background-color: var(--color-bg);
+        }
+
+        .story-text-panel.dark {
+            background-color: var(--color-green-dark);
+            color: var(--color-beige);
+        }
+
+        .story-text-inner {
+            max-width: 480px;
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.9s cubic-bezier(0.4, 0, 0.2, 1),
+                        transform 0.9s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .story-text-inner.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .story-number {
+            font-family: var(--font-heading);
+            font-size: 4rem;
+            font-weight: 600;
+            color: #C6A88E;
+            line-height: 1;
+            margin-bottom: 1rem;
+        }
+
+        .story-text-inner h2 {
+            font-family: var(--font-heading);
+            font-size: clamp(1.8rem, 3vw, 2.5rem);
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--color-green-dark);
+        }
+
+        .story-text-panel.dark .story-text-inner h2 {
+            color: var(--color-beige);
+        }
+
+        .story-text-inner p {
+            font-family: var(--font-body);
+            font-size: 1.05rem;
+            line-height: 1.85;
+            color: var(--color-charcoal);
+            margin-bottom: 1rem;
+        }
+
+        .story-text-panel.dark .story-text-inner p {
+            color: var(--color-beige);
+            opacity: 0.9;
+        }
+
+        .story-text-inner .highlight {
+            color: #C6A88E;
+            font-style: italic;
+        }
+
+        /* --- Image Panel with Reveal --- */
+        .story-image-panel {
+            position: relative;
+            overflow: hidden;
+            min-height: 100vh;
+        }
+
+        .story-image-panel img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transform: scale(1.15);
+            transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .story-image-panel.visible img {
+            transform: scale(1);
+        }
+
+        /* The wipe reveal overlay */
+        .story-image-panel::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-color: var(--color-green-dark);
+            transform-origin: left center;
+            transform: scaleX(1);
+            transition: transform 1s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 2;
+        }
+
+        .story-image-panel.reverse-panel::after {
+            transform-origin: right center;
+        }
+
+        .story-image-panel.visible::after {
+            transform: scaleX(0);
+        }
+
+        /* --- The Brand Section (interlude) --- */
+        .brand-interlude {
+            background-color: var(--color-charcoal);
+            color: var(--color-beige);
+            padding: 7rem 2rem;
+            text-align: center;
+        }
+
+        .brand-interlude-inner {
+            max-width: 750px;
+            margin: 0 auto;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.9s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .brand-interlude-inner.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .brand-interlude-quote {
+            font-family: var(--font-heading);
+            font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+            font-style: italic;
+            line-height: 1.5;
+            margin-bottom: 2rem;
+            font-weight: 400;
+        }
+
+        .brand-interlude-attr {
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #C6A88E;
+        }
+
+        /* --- Gallery Strip --- */
+        .gallery-strip {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 4px;
+        }
+
+        .gallery-strip-item {
+            aspect-ratio: 1;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .gallery-strip-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transform: scale(1.1);
+            opacity: 0;
+            transition: transform 0.8s ease, opacity 0.8s ease;
+        }
+
+        .gallery-strip-item.visible img {
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        .gallery-strip-item:nth-child(2) img { transition-delay: 0.15s; }
+        .gallery-strip-item:nth-child(3) img { transition-delay: 0.3s; }
+
+        /* --- Deliverables Section --- */
+        .deliverables {
+            padding: 6rem 2rem;
+            background-color: var(--color-bg);
+        }
+
+        .deliverables-inner {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .deliverables h2 {
+            font-family: var(--font-heading);
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 600;
+            color: var(--color-green-dark);
+            margin-bottom: 3rem;
+        }
+
+        .deliverables-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .deliverable-item {
+            opacity: 0;
+            transform: translateY(25px);
+            transition: all 0.6s ease;
+        }
+
+        .deliverable-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .deliverable-item:nth-child(2) { transition-delay: 0.1s; }
+        .deliverable-item:nth-child(3) { transition-delay: 0.2s; }
+        .deliverable-item:nth-child(4) { transition-delay: 0.3s; }
+
+        .deliverable-number {
+            font-family: var(--font-heading);
+            font-size: 2.8rem;
+            font-weight: 600;
+            color: var(--color-green-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .deliverable-label {
+            font-family: var(--font-body);
+            font-size: 0.85rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--color-grey-warm);
+        }
+
+        /* --- Back to Collabs / Nav --- */
+        .collab-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 3rem 4rem;
+            background-color: var(--color-green-dark);
+        }
+
+        .collab-nav a {
+            color: var(--color-beige);
+            text-decoration: none;
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            transition: color 0.3s ease;
+        }
+
+        .collab-nav a:hover {
+            color: #C6A88E;
+        }
+
+        .collab-nav svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* =====================================================
+           RESPONSIVE
+           ===================================================== */
+        @media (max-width: 900px) {
+            .story-block {
+                grid-template-columns: 1fr;
+                min-height: auto;
+            }
+
+            .story-block.reverse {
+                direction: ltr;
+            }
+
+            .story-image-panel {
+                min-height: 50vh;
+            }
+
+            /* On mobile, always show image first */
+            .story-block.reverse .story-image-panel {
+                order: -1;
+            }
+
+            .story-text-panel {
+                padding: 3.5rem 2rem;
+            }
+
+            .collab-hero-content {
+                padding: 2.5rem;
+            }
+
+            .gallery-strip {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 3px;
+            }
+
+            .collab-nav {
+                padding: 2rem;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .collab-hero-content {
+                padding: 2rem;
+            }
+
+            .story-image-panel {
+                min-height: 40vh;
+            }
+
+            .gallery-strip {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .gallery-strip-item:nth-child(3) {
+                grid-column: span 2;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER - matches site -->
+    <header class="site-header">
+        <nav class="nav">
+            <a href="index.html" class="logo">
+                <img src="images/logo.png" alt="My Plates or Yours">
+            </a>
+            <ul class="nav-links">
+                <li><a href="gallery-light.html">Light</a></li>
+                <li><a href="gallery-dark.html">Dark</a></li>
+                <li><a href="gallery-modern.html">Bright</a></li>
+                <li><a href="gallery-blog.html">Blog/Story</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="collaborations.html">Collaborations</a></li>
+            </ul>
+            <button class="nav-toggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </nav>
+    </header>
+
+    <!-- HERO -->
+    <section class="collab-hero in-view">
+        <div class="collab-hero-bg"></div>
+        <div class="collab-hero-content">
+            <div class="collab-hero-tag">Brand Collaboration</div>
+            <h1>Lucy's<br><em>Dressings</em></h1>
+            <p class="collab-hero-tagline">Proving dressings aren't just for salads</p>
+        </div>
+        <div class="scroll-hint">
+            <span>Scroll</span>
+            <div class="scroll-hint-line"></div>
+        </div>
+    </section>
+
+    <!-- STORY BLOCK 1: The Brand -->
+    <section class="story-block">
+        <div class="story-text-panel">
+            <div class="story-text-inner">
+                <div class="story-number">01</div>
+                <h2>A Kitchen Table Brand</h2>
+                <p>Lucy's Dressings began exactly where the best food stories start — in someone's kitchen. Founded by Lucy Mackenzie in Suffolk, the brand grew from a simple belief: that dressings could be fresher, more exciting, and far more versatile than anything on supermarket shelves.</p>
+                <p>Now stocked in Waitrose, Whole Foods, and over 600 stores nationwide, and holders of <span class="highlight">11 Great Taste Awards</span>, Lucy's has stayed true to its roots — small-batch, locally sourced, and made in the UK.</p>
+            </div>
+        </div>
+        <div class="story-image-panel">
+            <img src="images/gallery/Lucys miso aubergine soy salmon-6.jpg" alt="Lucy's Miso and Garlic Dressing being poured">
+        </div>
+    </section>
+
+    <!-- STORY BLOCK 2: The Brief -->
+    <section class="story-block reverse">
+        <div class="story-text-panel dark">
+            <div class="story-text-inner">
+                <div class="story-number">02</div>
+                <h2>Creative Freedom</h2>
+                <p>Lucy's approach to working with content creators was refreshingly open. Rather than prescribing exactly how their products should be shown, they <span class="highlight">handed over creative control</span> — trusting the storytellers to find the most authentic and compelling way to showcase the flavours.</p>
+                <p>That freedom was the brief. And it's exactly the kind of partnership that produces the best work.</p>
+            </div>
+        </div>
+        <div class="story-image-panel reverse-panel">
+            <img src="images/gallery/Lucys miso aubergine soy salmon-5.jpg" alt="Brushing miso glaze onto salmon">
+        </div>
+    </section>
+
+    <!-- BRAND INTERLUDE QUOTE -->
+    <section class="brand-interlude">
+        <div class="brand-interlude-inner">
+            <p class="brand-interlude-quote">"Lucy felt no one was bringing out exciting flavours or suggesting that dressings weren't simply for salad. So Lucy got to work."</p>
+            <p class="brand-interlude-attr">— Lucy's Dressings</p>
+        </div>
+    </section>
+
+    <!-- STORY BLOCK 3: The Concept -->
+    <section class="story-block">
+        <div class="story-text-panel">
+            <div class="story-text-inner">
+                <div class="story-number">03</div>
+                <h2>Beyond the Salad Bowl</h2>
+                <p>I chose <span class="highlight">two salmon dishes</span> to showcase just how far these dressings could stretch beyond their label. The Miso & Garlic became a sticky glaze for baked salmon paired with aubergine noodles. The Lime & Chilli went into a vibrant stir-fry with crispy skin-on salmon.</p>
+                <p>Both dishes were quick — under 20 minutes — but looked and tasted anything but casual.</p>
+            </div>
+        </div>
+        <div class="story-image-panel">
+            <img src="images/gallery/Lucys miso aubergine soy salmon-2.jpg" alt="Miso aubergine soy salmon plated">
+        </div>
+    </section>
+
+    <!-- STORY BLOCK 4: The Shoot -->
+    <section class="story-block reverse">
+        <div class="story-text-panel dark">
+            <div class="story-text-inner">
+                <div class="story-number">04</div>
+                <h2>Shooting Both Sides</h2>
+                <p>The deliverables needed to work across multiple formats — <span class="highlight">hero recipe shots, process photography</span>, and Instagram story content. So we shot everything: the finished plates, the hands-on moments, and the product in action.</p>
+                <p>The process shots — the dressing being poured, the glaze being brushed on — turned out to be some of the most compelling images. They tell the story of cooking, not just the result.</p>
+            </div>
+        </div>
+        <div class="story-image-panel reverse-panel">
+            <img src="images/gallery/Lucys miso aubergine soy salmon-8.jpg" alt="Miso aubergine soy salmon finished dish">
+        </div>
+    </section>
+
+    <!-- GALLERY STRIP -->
+    <div class="gallery-strip">
+        <div class="gallery-strip-item">
+            <img src="images/gallery/Lucys miso soy salmon.jpg" alt="Miso soy salmon hero shot">
+        </div>
+        <div class="gallery-strip-item">
+            <img src="images/gallery/lucys salmon_.jpeg" alt="Lime and chilli salmon">
+        </div>
+        <div class="gallery-strip-item">
+            <img src="images/gallery/Lucys miso aubergine soy salmon-2.jpg" alt="Miso aubergine soy salmon">
+        </div>
+    </div>
+
+    <!-- DELIVERABLES -->
+    <section class="deliverables">
+        <div class="deliverables-inner">
+            <h2>What We Delivered</h2>
+            <div class="deliverables-grid">
+                <div class="deliverable-item">
+                    <div class="deliverable-number">2</div>
+                    <div class="deliverable-label">Full Recipes</div>
+                </div>
+                <div class="deliverable-item">
+                    <div class="deliverable-number">6+</div>
+                    <div class="deliverable-label">Hero Images</div>
+                </div>
+                <div class="deliverable-item">
+                    <div class="deliverable-number">✓</div>
+                    <div class="deliverable-label">Instagram Stories</div>
+                </div>
+                <div class="deliverable-item">
+                    <div class="deliverable-number">✓</div>
+                    <div class="deliverable-label">Product & Process Shots</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BOTTOM NAV -->
+    <nav class="collab-nav">
+        <a href="collaborations.html">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+            Back to Collaborations
+        </a>
+        <a href="#">
+            Next Collaboration
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg>
+        </a>
+    </nav>
+
+    <!-- FOOTER - matches site -->
+    <footer class="site-footer">
+        <div class="footer-content">
+            <a href="https://instagram.com/my_plates_or_yours" target="_blank" rel="noopener">Instagram</a>
+            <p>&copy; 2025 My Plates or Yours. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        // Intersection Observer for all scroll-reveal elements
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+
+        // Observe story text panels
+        document.querySelectorAll('.story-text-inner').forEach(el => observer.observe(el));
+
+        // Observe image panels
+        document.querySelectorAll('.story-image-panel').forEach(el => observer.observe(el));
+
+        // Observe brand interlude
+        document.querySelectorAll('.brand-interlude-inner').forEach(el => observer.observe(el));
+
+        // Observe gallery strip items
+        document.querySelectorAll('.gallery-strip-item').forEach(el => observer.observe(el));
+
+        // Observe deliverable items
+        document.querySelectorAll('.deliverable-item').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>

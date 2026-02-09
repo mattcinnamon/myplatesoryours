@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brand Collaborations | My Plates or Yours</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Jost:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        /* Additional styles for collaborations page */
+        .hero-collab {
+            text-align: center;
+            padding: 8rem 2rem 4rem;
+            background-color: var(--color-bg);
+        }
+
+        .hero-collab h1 {
+            font-family: var(--font-heading);
+            font-size: clamp(3rem, 8vw, 5rem);
+            font-weight: 400;
+            color: var(--color-green-dark);
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
+
+        .hero-collab .tagline {
+            font-family: var(--font-heading);
+            font-style: italic;
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            color: var(--color-grey-warm);
+            font-weight: 400;
+        }
+
+        .collab-intro {
+            max-width: 800px;
+            margin: 0 auto 6rem;
+            padding: 0 2rem;
+            text-align: center;
+        }
+
+        .collab-intro h2 {
+            font-family: var(--font-heading);
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 600;
+            color: var(--color-green-dark);
+            margin-bottom: 1.5rem;
+        }
+
+        .collab-intro p {
+            font-family: var(--font-body);
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--color-charcoal);
+        }
+
+        .collab-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem 6rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .collab-card {
+            position: relative;
+            height: 500px;
+            border-radius: 8px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        .collab-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+        }
+
+        .collab-card-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            transition: transform 0.6s ease;
+            filter: brightness(0.7);
+        }
+
+        .collab-card:hover .collab-card-bg {
+            transform: scale(1.08);
+            filter: brightness(0.5);
+        }
+
+        .collab-card-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 2.5rem;
+            background: linear-gradient(to top, rgba(64, 65, 62, 0.95), transparent);
+            color: var(--color-beige);
+            z-index: 2;
+        }
+
+        .collab-card-content h3 {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .collab-brand {
+            font-family: var(--font-heading);
+            font-style: italic;
+            font-size: 1.2rem;
+            color: #C6A88E;
+            margin-bottom: 1rem;
+        }
+
+        .collab-card-content p {
+            line-height: 1.6;
+            margin-bottom: 1rem;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.4s ease 0.2s;
+        }
+
+        .collab-card:hover .collab-card-content p {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .collab-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--color-beige);
+            text-decoration: none;
+            font-family: var(--font-body);
+            font-size: 1rem;
+            opacity: 0;
+            transform: translateX(-10px);
+            transition: all 0.4s ease 0.3s;
+            border-bottom: 1px solid transparent;
+        }
+
+        .collab-card:hover .collab-link {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .collab-link:hover {
+            border-bottom-color: #C6A88E;
+        }
+
+        .collab-link svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        /* Placeholder gradients */
+        .card-1 .collab-card-bg {
+            background: linear-gradient(135deg, #555C4B 0%, #6F6B64 100%);
+        }
+
+        .card-2 .collab-card-bg {
+            background: linear-gradient(135deg, #C6A88E 0%, #A4A4A3 100%);
+        }
+
+        .card-3 .collab-card-bg {
+            background: linear-gradient(135deg, #6F6B64 0%, #555C4B 100%);
+        }
+
+        .cta-section {
+            text-align: center;
+            padding: 6rem 2rem;
+            background-color: var(--color-green-dark);
+            color: var(--color-beige);
+        }
+
+        .cta-section h2 {
+            font-family: var(--font-heading);
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            font-family: var(--font-heading);
+            font-style: italic;
+            font-size: 1.4rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1.2rem 3rem;
+            background-color: #C6A88E;
+            color: var(--color-charcoal);
+            text-decoration: none;
+            font-family: var(--font-body);
+            font-size: 1.1rem;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .cta-button:hover {
+            background-color: var(--color-beige);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        @media (max-width: 768px) {
+            .collab-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .collab-card {
+                height: 400px;
+            }
+
+            .collab-card-content p,
+            .collab-link {
+                opacity: 1;
+                transform: translate(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <nav class="nav">
+            <a href="index.html" class="logo">
+                <img src="images/logo.png" alt="My Plates or Yours">
+            </a>
+            <ul class="nav-links">
+                <li><a href="gallery-light.html">Light</a></li>
+                <li><a href="gallery-dark.html">Dark</a></li>
+                <li><a href="gallery-modern.html">Bright</a></li>
+                <li><a href="gallery-blog.html">Blog/Story</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="collaborations.html" class="active">Collaborations</a></li>
+            </ul>
+            <button class="nav-toggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero-collab">
+            <h1>Brand Collaborations</h1>
+            <p class="tagline">Where culinary artistry meets creative partnerships</p>
+        </section>
+
+        <section class="collab-intro">
+            <h2>Crafting Stories Through Food</h2>
+            <p>Each collaboration represents a unique journey of creativity, bringing together brand visions and culinary artistry to create memorable visual experiences that resonate with audiences and celebrate the beauty of food.</p>
+        </section>
+
+        <div class="collab-grid">
+            <article class="collab-card card-1">
+                <div class="collab-card-bg"></div>
+                <div class="collab-card-content">
+                    <h3>Collaboration One</h3>
+                    <div class="collab-brand">Brand Name</div>
+                    <p>A stunning exploration of flavor and visual storytelling, creating memorable moments that celebrate culinary excellence.</p>
+                    <a href="collab-1.html" class="collab-link">
+                        Explore this project
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/>
+                        </svg>
+                    </a>
+                </div>
+            </article>
+
+            <article class="collab-card card-2">
+                <div class="collab-card-bg"></div>
+                <div class="collab-card-content">
+                    <h3>Collaboration Two</h3>
+                    <div class="collab-brand">Brand Name</div>
+                    <p>Where innovation meets tradition, showcasing products through carefully crafted compositions and authentic storytelling.</p>
+                    <a href="collab-2.html" class="collab-link">
+                        Explore this project
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/>
+                        </svg>
+                    </a>
+                </div>
+            </article>
+
+            <article class="collab-card card-3">
+                <div class="collab-card-bg"></div>
+                <div class="collab-card-content">
+                    <h3>Collaboration Three</h3>
+                    <div class="collab-brand">Brand Name</div>
+                    <p>A creative partnership focused on capturing the essence of quality and craftsmanship through food photography.</p>
+                    <a href="collab-3.html" class="collab-link">
+                        Explore this project
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/>
+                        </svg>
+                    </a>
+                </div>
+            </article>
+        </div>
+
+        <section class="cta-section">
+            <h2>Interested in Collaborating?</h2>
+            <p>Let's create something beautiful together</p>
+            <a href="mailto:contact@myplatesoryours.com" class="cta-button">Get in Touch</a>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-content">
+            <a href="https://instagram.com/my_plates_or_yours" target="_blank" rel="noopener">Instagram</a>
+            <p>&copy; 2025 My Plates or Yours. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
