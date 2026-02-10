@@ -441,6 +441,47 @@
                 grid-column: span 2;
             }
         }
+
+        /* CTA Section */
+.cta-section {
+    text-align: center;
+    padding: 6rem 2rem;
+    background-color: var(--color-green-dark);
+    color: var(--color-beige);
+}
+
+.cta-section h2 {
+    font-family: var(--font-heading);
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.cta-section p {
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-size: 1.4rem;
+    margin-bottom: 2.5rem;
+}
+
+.cta-button {
+    display: inline-block;
+    padding: 1.2rem 3rem;
+    background-color: #C6A88E;
+    color: var(--color-charcoal);
+    text-decoration: none;
+    font-family: var(--font-body);
+    font-size: 1.1rem;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.cta-button:hover {
+    background-color: var(--color-beige);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+}
     </style>
 </head>
 <body>
@@ -599,6 +640,12 @@
     </nav>
 
     <!-- FOOTER - matches site -->
+    <!-- CTA -->
+<section class="cta-section">
+    <h2>Interested in Collaborating?</h2>
+    <p>Let's create something beautiful together</p>
+    <a href="mailto:contact@myplatesoryours.com" class="cta-button">Get in Touch</a>
+</section>
     <footer class="site-footer">
         <div class="footer-content">
             <a href="https://instagram.com/my_plates_or_yours" target="_blank" rel="noopener">Instagram</a>
