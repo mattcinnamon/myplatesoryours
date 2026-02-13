@@ -358,7 +358,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1.5rem 4rem;
+            padding: 3rem 4rem;
             background-color: var(--color-green-dark);
         }
 
@@ -445,7 +445,7 @@
         /* CTA Section */
 .cta-section {
     text-align: center;
-    padding: 3rem 2rem;
+    padding: 6rem 2rem;
     background-color: var(--color-green-dark);
     color: var(--color-beige);
 }
@@ -644,7 +644,7 @@
 <section class="cta-section">
     <h2>Interested in Collaborating?</h2>
     <p>Let's create something beautiful together</p>
-    <a href="/cdn-cgi/l/email-protection#d5b6babba1b4b6a195b8aca5b9b4a1b0a6baa7acbaa0a7a6fbb6bab8" class="cta-button">Get in Touch</a>
+    <a href="mailto:contact@myplatesoryours.com" class="cta-button">Get in Touch</a>
 </section>
     <footer class="site-footer">
         <div class="footer-content">
@@ -653,7 +653,7 @@
         </div>
     </footer>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="js/main.js"></script>
+    <script src="js/main.js"></script>
     <script>
         // Intersection Observer for all scroll-reveal elements
         const observer = new IntersectionObserver((entries) => {
@@ -675,3 +675,9 @@
 
         // Observe gallery strip items
         document.querySelectorAll('.gallery-strip-item').forEach(el => observer.observe(el));
+
+        // Observe deliverable items
+        document.querySelectorAll('.deliverable-item').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
