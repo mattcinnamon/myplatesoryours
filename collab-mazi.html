@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The MAZI Project | My Plates or Yours</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Jost:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        /* Hero image - full width tomato orzo */
+        .mazi-hero {
+            padding: calc(80px + var(--space-lg)) var(--space-md) var(--space-sm);
+            text-align: center;
+        }
+
+        .mazi-hero h1 {
+            margin-bottom: var(--space-lg);
+        }
+
+        .mazi-hero-image {
+            max-width: 1200px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        .mazi-hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Fundraiser gallery grid */
+        .mazi-gallery-section {
+            padding: var(--space-lg) var(--space-md) var(--space-xl);
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .mazi-gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: var(--space-sm);
+        }
+
+        .mazi-gallery-grid .gallery-item {
+            aspect-ratio: 1;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .mazi-gallery-grid .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform var(--transition-base);
+        }
+
+        .mazi-gallery-grid .gallery-item:hover img {
+            transform: scale(1.03);
+        }
+
+        /* Back nav */
+        .back-nav {
+            padding: var(--space-md) var(--space-md) var(--space-lg);
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .back-nav a {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            letter-spacing: 0.05em;
+            color: var(--color-text-light);
+            transition: color var(--transition-fast);
+        }
+
+        .back-nav a:hover {
+            color: var(--color-accent);
+        }
+
+        .back-nav svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        @media (max-width: 480px) {
+            .mazi-gallery-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <nav class="nav">
+            <a href="index.html" class="logo">
+                <img src="images/logo.png" alt="My Plates or Yours">
+            </a>
+            <ul class="nav-links">
+                <li><a href="gallery-light.html">Light</a></li>
+                <li><a href="gallery-dark.html">Dark</a></li>
+                <li><a href="gallery-modern.html">Modern</a></li>
+                <li><a href="gallery-blog.html">Blog/Story</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+            <button class="nav-toggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero: Tomato Orzo -->
+        <section class="mazi-hero">
+            <h1>The MAZI Project</h1>
+            <div class="mazi-hero-image">
+                <img src="images/gallery/mazi/MAZI tomato orzo web.jpg" alt="Tomato orzo recipe photography for The MAZI Project">
+            </div>
+        </section>
+
+        <!-- Fundraiser Event Gallery -->
+        <section class="mazi-gallery-section">
+            <div class="mazi-gallery-grid">
+                <div class="gallery-item">
+                    <img src="images/gallery/mazi/DSC02830_Mazi_Root_Apr26.jpg" alt="MAZI Project fundraiser event">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/gallery/mazi/DSC02789_Mazi_Root_Apr26.jpg" alt="MAZI Project fundraiser event">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/gallery/mazi/DSC02787_Mazi_Root_Apr26.jpg" alt="MAZI Project fundraiser event">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/gallery/mazi/DSC02786_Mazi_Root_Apr26.jpg" alt="MAZI Project fundraiser event">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/gallery/mazi/DSC02774_Mazi_Root_Apr26.jpg" alt="MAZI Project fundraiser event">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/gallery/mazi/DSC02762_Mazi_Root_Apr26_1.jpg" alt="MAZI Project fundraiser event">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/gallery/mazi/DSC02759_Mazi_Root_Apr26.jpg" alt="MAZI Project fundraiser event">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/gallery/mazi/DSC02755_Mazi_Root_Apr26.jpg" alt="MAZI Project fundraiser event">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/gallery/mazi/DSC02754_Mazi_Root_Apr26.jpg" alt="MAZI Project fundraiser event">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/gallery/mazi/DSC02678_Mazi_Root_Apr26.jpg" alt="MAZI Project fundraiser event">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/gallery/mazi/DSC02673_Mazi_Root_Apr26.jpg" alt="MAZI Project fundraiser event">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/gallery/mazi/DSC02663_Mazi_Root_Apr26.jpg" alt="MAZI Project fundraiser event">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/gallery/mazi/DSC02659_Mazi_Root_Apr26.jpg" alt="MAZI Project fundraiser event">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/gallery/mazi/DSC02654_Mazi_Root_Apr26.jpg" alt="MAZI Project fundraiser event">
+                </div>
+            </div>
+        </section>
+
+        <!-- Back nav -->
+        <section class="back-nav">
+            <a href="collaborations.html">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+                Back to all collaborations
+            </a>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-social">
+                <a href="https://instagram.com/myplatesoryours" target="_blank" rel="noopener">Instagram</a>
+            </div>
+            <p class="footer-copyright">&copy; 2025 My Plates or Yours. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
