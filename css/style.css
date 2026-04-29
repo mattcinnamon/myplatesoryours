@@ -299,6 +299,30 @@ p {
 /* --------------------------------------------------------------------------
    About Page
    -------------------------------------------------------------------------- */
+/* Add this to the About Page section of style.css */
+
+.about-headshot {
+    margin: 0 0 var(--space-md);
+    max-width: 320px;
+}
+
+.about-headshot img {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+    display: block;
+}
+
+/* Optional: float it alongside the bio on wider screens */
+@media (min-width: 768px) {
+    .about-headshot {
+        float: right;
+        margin: 0 0 var(--space-md) var(--space-md);
+        max-width: 280px;
+    }
+}
+
+
 .about-content {
     max-width: 800px;
     margin: 0 auto;
